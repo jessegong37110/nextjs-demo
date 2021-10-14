@@ -97,14 +97,14 @@ function Location({ data }) {
 //@ts-ignore
 export async function getServerSideProps(context) {
   // Fetch data from external API
-  // const res = await fetch(
-  //   `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`
-  // );
-  // const locations = await res.json();
-  // console.log(locations);
+  const res = await fetch(
+    `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`
+  );
+  const locations = await res.json();
+  console.log(locations);
   const data = {
     magicValue: context.query?.region || "",
-    locationsData: [],
+    locationsData: locations.items,
   };
 
   // Pass data to the page via props
