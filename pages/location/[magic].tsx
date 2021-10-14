@@ -5,7 +5,7 @@ import { useState } from "react";
 //@ts-ignore
 function Location({ data }) {
   const router = useRouter();
-  const { magicValue } = router.query;
+  // const { magicValue } = router.query;
   const { locationsData } = data;
   const [searchValue, setSearchValue] = useState(data.magicValue);
   const [locations, setLocations] = useState(locationsData);
@@ -97,14 +97,14 @@ function Location({ data }) {
 //@ts-ignore
 export async function getServerSideProps(context) {
   // Fetch data from external API
-  const res = await fetch(
-    `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`
-  );
-  const locations = await res.json();
-  console.log(locations);
+  // const res = await fetch(
+  //   `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`
+  // );
+  // const locations = await res.json();
+  // console.log(locations);
   const data = {
     magicValue: context.query?.region || "",
-    locationsData: locations.items,
+    locationsData: [],
   };
 
   // Pass data to the page via props

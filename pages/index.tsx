@@ -51,7 +51,7 @@ const Home: NextPage = () => {
             </p>
           </a>
 
-          <a href="http://localhost:3000/hello" className={styles.card}>
+          <a href="/hello" className={styles.card}>
             <h2>Hello &rarr;</h2>
           </a>
           <a href="/location/abc" className={styles.card}>
