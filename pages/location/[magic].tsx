@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
+import fetch from "node-fetch";
 // @ts-nocheck
 //@ts-ignore
 function Location({ data }) {
@@ -26,6 +27,7 @@ function Location({ data }) {
       `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`
     );
     const locations = await res.json();
+    //@ts-ignore
     setLocations(locations.items);
     console.log(locations);
   };
@@ -134,8 +136,10 @@ export async function getServerSideProps(context) {
     //   ],
     // };
     console.log(locations);
+    //@ts-ignore
     const data = {
       magicValue: context.query?.region || "",
+      //@ts-ignore
       locationsData: locations.items,
       error: null,
     };
