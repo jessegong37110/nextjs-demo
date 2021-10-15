@@ -1,7 +1,9 @@
 // import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
+import axios from "axios";
+
 // @ts-nocheck
 //@ts-ignore
 function Location({ data }) {
@@ -107,17 +109,24 @@ function Location({ data }) {
 export async function getServerSideProps(context) {
   try {
     //@ts-ignore
-    const res = await fetch(
-      `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`,
+    // const res = await fetch(
+    //   `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`,
+    //   {
+    //     method: "get",
+    //     headers: { "Content-Type": "application/json" },
+    //   }
+    // );
+
+    // const locations = await res.json();
+
+    const res = await axios.get(
+      "https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json",
       {
-        method: "get",
         headers: { "Content-Type": "application/json" },
       }
     );
 
-    // const locations = await res.json();
-
-    const locations = {
+    const locations = res.data || {
       items: [
         {
           eventId: "a0l2N000000SptcQAC",
@@ -125,7 +134,6 @@ export async function getServerSideProps(context) {
           startDateTime: "2021-09-14T00:00:00.000Z",
           endDateTime: "2021-09-14T01:30:00.000Z",
           publicAdvice: "Add Update for McDonald",
-          location: [Object],
         },
         {
           eventId: "a0l2N000000SptDQAS",
@@ -133,7 +141,6 @@ export async function getServerSideProps(context) {
           startDateTime: "2021-09-15T19:00:00.000Z",
           endDateTime: "2021-09-15T20:03:00.000Z",
           publicAdvice: null,
-          location: [Object],
         },
         {
           eventId: "a0l2N000000Tbt5QAC",
@@ -141,7 +148,6 @@ export async function getServerSideProps(context) {
           startDateTime: "2021-10-05T20:15:00.000Z",
           endDateTime: "2021-10-06T04:45:00.000Z",
           publicAdvice: "Sammy Travel added",
-          location: [Object],
         },
       ],
     };
@@ -150,7 +156,7 @@ export async function getServerSideProps(context) {
       magicValue: context.query?.region || "",
       //@ts-ignore
       locationsData: locations.items,
-      error: JSON.stringify(res),
+      error: null,
     };
 
     // Pass data to the page via props
