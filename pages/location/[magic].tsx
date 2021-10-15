@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
 import Link from "next/link";
 import { useState } from "react";
 import fetch from "node-fetch";
@@ -6,7 +6,7 @@ import fetch from "node-fetch";
 //@ts-ignore
 function Location({ data }) {
   try {
-    const router = useRouter();
+    // const router = useRouter();
     // const { magicValue } = router.query;
     const { locationsData } = data;
     const [searchValue, setSearchValue] = useState(data.magicValue);
@@ -33,7 +33,7 @@ function Location({ data }) {
       console.log(locations);
     };
     if (data.error) {
-      return <div>{data.error}</div>;
+      return <div>{"Server Error:" + data.error}</div>;
     } else {
       return (
         <div>
@@ -98,7 +98,7 @@ function Location({ data }) {
       );
     }
   } catch (e: any) {
-    return <div>{e.message}</div>;
+    return <div>{"Client Error:" + e.message}</div>;
   }
 }
 
