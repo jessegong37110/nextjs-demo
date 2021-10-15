@@ -156,6 +156,7 @@ export async function getServerSideProps(context) {
       locationsData: [],
       error: e.message,
     };
+    return { props: { data } };
   }
 }
 
