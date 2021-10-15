@@ -106,40 +106,45 @@ function Location({ data }) {
 //@ts-ignore
 export async function getServerSideProps(context) {
   try {
+    //@ts-ignore
     const res = await fetch(
-      `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`
+      `https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json`,
+      {
+        method: "get",
+        headers: { "Content-Type": "application/json" },
+      }
     );
 
-    // const abc = await res.json();
+    const locations = await res.json();
 
-    const locations = {
-      items: [
-        {
-          eventId: "a0l2N000000SptcQAC",
-          eventName: "McDonald UPDATE",
-          startDateTime: "2021-09-14T00:00:00.000Z",
-          endDateTime: "2021-09-14T01:30:00.000Z",
-          publicAdvice: "Add Update for McDonald",
-          location: [Object],
-        },
-        {
-          eventId: "a0l2N000000SptDQAS",
-          eventName: "Queensgate",
-          startDateTime: "2021-09-15T19:00:00.000Z",
-          endDateTime: "2021-09-15T20:03:00.000Z",
-          publicAdvice: null,
-          location: [Object],
-        },
-        {
-          eventId: "a0l2N000000Tbt5QAC",
-          eventName: "Sammy Travel Event updated",
-          startDateTime: "2021-10-05T20:15:00.000Z",
-          endDateTime: "2021-10-06T04:45:00.000Z",
-          publicAdvice: "Sammy Travel added",
-          location: [Object],
-        },
-      ],
-    };
+    // const locations = {
+    //   items: [
+    //     {
+    //       eventId: "a0l2N000000SptcQAC",
+    //       eventName: "McDonald UPDATE",
+    //       startDateTime: "2021-09-14T00:00:00.000Z",
+    //       endDateTime: "2021-09-14T01:30:00.000Z",
+    //       publicAdvice: "Add Update for McDonald",
+    //       location: [Object],
+    //     },
+    //     {
+    //       eventId: "a0l2N000000SptDQAS",
+    //       eventName: "Queensgate",
+    //       startDateTime: "2021-09-15T19:00:00.000Z",
+    //       endDateTime: "2021-09-15T20:03:00.000Z",
+    //       publicAdvice: null,
+    //       location: [Object],
+    //     },
+    //     {
+    //       eventId: "a0l2N000000Tbt5QAC",
+    //       eventName: "Sammy Travel Event updated",
+    //       startDateTime: "2021-10-05T20:15:00.000Z",
+    //       endDateTime: "2021-10-06T04:45:00.000Z",
+    //       publicAdvice: "Sammy Travel added",
+    //       location: [Object],
+    //     },
+    //   ],
+    // };
     //@ts-ignore
     const data = {
       magicValue: context.query?.region || "",
