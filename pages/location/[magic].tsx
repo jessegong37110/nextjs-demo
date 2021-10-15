@@ -115,7 +115,7 @@ export async function getServerSideProps(context) {
       }
     );
 
-    const locations = await res.json();
+    // const locations = await res.json();
 
     // const locations = {
     //   items: [
@@ -150,7 +150,7 @@ export async function getServerSideProps(context) {
       magicValue: context.query?.region || "",
       //@ts-ignore
       locationsData: locations.items,
-      error: null,
+      error: JSON.stringify(res),
     };
 
     // Pass data to the page via props
