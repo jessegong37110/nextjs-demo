@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useState } from "react";
 // import fetch from "node-fetch";
-import axios from "axios";
+const axios = require("axios").default;
 
 // @ts-nocheck
 //@ts-ignore
@@ -120,10 +120,7 @@ export async function getServerSideProps(context) {
     // const locations = await res.json();
 
     const res = await axios.get(
-      "https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json",
-      {
-        headers: { "Content-Type": "application/json" },
-      }
+      "https://exposure-events.develop.tracing.tmp19.net/current-exposure-locations.json"
     );
 
     const locations = res.data || {
